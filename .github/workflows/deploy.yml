@@ -27,6 +27,12 @@ jobs:
       - run: docker build -t gokulcs4u/multi-server ./server
       - run: docker build -t gokulcs4u/multi-worker ./worker
 
+      # after building images push to docker hub
+      - run: docker push gokulcs4u/multi-client
+      - run: docker push gokulcs4u/multi-nginx
+      - run: docker push gokulcs4u/multi-server
+      - run: docker push gokulcs4u/multi-worker
+
       # generate deployment package
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
